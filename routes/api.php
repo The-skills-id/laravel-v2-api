@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 Route::get('kirimemail', function () {
-	$this->notify(new \App\Notifications\MailResetNotification($token));
+	Mail::to('cintaniasa1@gmail.com')->send(new \App\Mail\EmailVerifMail('as'));
 	
 	dd('email terkirim');
 });
