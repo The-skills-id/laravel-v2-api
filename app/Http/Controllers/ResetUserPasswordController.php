@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use App\User;
-class ResetPasswordController extends Controller
+class ResetUserPasswordController extends Controller
 {
     use ResetsPasswords;
 

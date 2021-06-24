@@ -14,44 +14,14 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('kirimemail', function () {
-	Mail::to('cintaniasa1@gmail.com')->send(new \App\Mail\EmailVerifMail('as'));
-	
-	dd('email terkirim');
-});
 Route::prefix('v2')->group(function () {
-	Route::post('/reset-password', 'ResetPasswordController@resetPassword');
-	Route::post('/reset-password/{token}', 'ResetPasswordActionController@callResetPasswordAction');
-    Route::middleware(['auth:api'])->group(function () {
-        Route::post('/logout','AuthController@logout');  
-		Route::get('/webinar/mywebinar/{userid}','WebinarController@mywebinar');
-		
-    });
-
 	Route::middleware(['auth:sanctum'])->group(function () {
-		Route::get('aku', function (Request $request) {
-			return $request->user();
-		})->middleware('verified');
-
-		/* Route::get('/email/verify', function () {
-			return "must verified";
-		})->name('verification.notice');
-
-		Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-			$request->fulfill();
-		
-			return $request;
-		})->middleware(['signed'])->name('verification.verify');
-
-		Route::post('/email/verification-notification', function (Request $request) {
-			$request->user()->sendEmailVerificationNotification();
-		
-			return response()->json([
-				'status' => 'success',
-				'message'=> 'Link verifikasi email sudah dikirim!'
-			]);
-		})->middleware(['throttle:6,1'])->name('verification.send'); */
+		Route::post('/logout','AuthController@logout');  
+		Route::get('/webinar/mywebinar/{userid}','WebinarController@mywebinar');
 	});
+	
+	Route::post('/reset-password', 'ResetUserPasswordController@resetPassword');
+	Route::post('/reset-password/{token}', 'ResetPasswordActionController@callResetPasswordAction');
     Route::post('/login','AuthController@login');
     Route::post('/register','AuthController@register');
 	
