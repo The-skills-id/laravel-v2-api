@@ -75,9 +75,9 @@ class AuthController extends Controller
 		return $response;
 	}
 
-	public function logout()
+	public function loggingout(Request $request)
 	{
-		auth()->logout();
+		return $request;
 		return response()->json(['message' => 'Successfully logged out']);
 	}
 

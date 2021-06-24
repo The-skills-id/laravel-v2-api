@@ -16,8 +16,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 Route::prefix('v2')->group(function () {
 	Route::middleware(['auth:sanctum'])->group(function () {
-		Route::post('/logout','AuthController@logout');  
 		Route::get('/webinar/mywebinar/{userid}','WebinarController@mywebinar');
+		Route::post('/logout','LogoutController@logout');  
 	});
 	
 	Route::post('/reset-password', 'ResetUserPasswordController@resetPassword');
