@@ -41,7 +41,7 @@ class MailResetNotification extends ResetPassword
      */
     public function toMail($notifiable)
     {
-        $link = url( "https://the-skills.id/auth/change-password?token=".$this->token );
+        $link = url( "https://the-skills.id/auth/reset-password/change-password?token=".$this->token );
         return ( new MailMessage )
             ->subject( 'Notifikasi Reset Password' )
             ->line( "Halo! Kamu menerima email ini karena akun theskills anda meminta untuk pergantian password." )
