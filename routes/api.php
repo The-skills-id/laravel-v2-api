@@ -43,6 +43,7 @@ Route::prefix('v2')->group(function () {
 	Route::get('/membership/{courseid}','MembershipController@getMembership');
 	Route::post('/usermembership','UserMembershipController@store');
 	Route::get('/storage/{filename}','StorageController@index');
-
+	Route::get('/articles', 'ArticleController@index');
+	Route::get('/article/{id}', 'ArticleController@getArticleById');
 
 });
