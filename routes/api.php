@@ -16,6 +16,28 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 */
 Route::prefix('v2')->group(function () {
 	Route::middleware(['auth:sanctum'])->group(function () {
+		Route::get('aku', function (Request $request) {
+			return $request->user();
+		})->middleware('verified');
+		Route::get('/course/mycourse', 'CourseController@getCourseByUser');
+		/* Route::get('/email/verify', function () {
+			return "must verified";
+		})->name('verification.notice');
+
+		Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+			$request->fulfill();
+		
+			return $request;
+		})->middleware(['signed'])->name('verification.verify');
+
+		Route::post('/email/verification-notification', function (Request $request) {
+			$request->user()->sendEmailVerificationNotification();
+		
+			return response()->json([
+				'status' => 'success',
+				'message'=> 'Link verifikasi email sudah dikirim!'
+			]);
+		})->middleware(['throttle:6,1'])->name('verification.send'); */
 		Route::get('/webinar/mywebinar/{userid}','WebinarController@mywebinar');
 		Route::post('/logout','LogoutController@logout');  
 	});
