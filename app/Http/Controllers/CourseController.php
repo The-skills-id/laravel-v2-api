@@ -7,6 +7,8 @@ use App\Course;
 use App\Subcourse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+
 class CourseController extends Controller
 {
     /**
@@ -79,6 +81,15 @@ class CourseController extends Controller
 
     public function getCourseByTitle($title)
     {
-        return CourseTitles::where('title',$title)->with(['courses'])->get();
+        return CourseTitles::where('title',$title)->first()->courses()->orderBy('created_at','desc')->get();
+    }
+
+    public function getCourseByUser(Request $request){
+        $user = $request->user();
+
+        
+        return response()->json([
+            'courses' => $user->courses
+        ]);
     }
 }
