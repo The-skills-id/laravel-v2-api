@@ -57,7 +57,7 @@ class WebinarController extends Controller
         if($webinarparticipant->save()) 
         {
             return response()->json([
-                "message" => "Pendaftaran webinar berhasil"
+                "message" => "Terimakasih telat mendaftar di acara ini. Setelah mendapat konfirmasi dari admin, link zoom akan muncul di fitur agenda anda."
             ], 200);
         }
 

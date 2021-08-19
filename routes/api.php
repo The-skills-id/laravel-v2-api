@@ -15,38 +15,13 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 Route::prefix('v2')->group(function () {
-	Route::post('/reset-password', 'ResetPasswordController@resetPassword');
-	Route::post('/reset-password/{token}', 'ResetPasswordActionController@callResetPasswordAction');
-    Route::middleware(['auth:api'])->group(function () {
-        Route::post('/logout','AuthController@logout');  
-		Route::get('/webinar/mywebinar/{userid}','WebinarController@mywebinar');
-		
-    });
-
 	Route::middleware(['auth:sanctum'])->group(function () {
-		Route::get('aku', function (Request $request) {
-			return $request->user();
-		})->middleware('verified');
-		Route::get('/course/mycourse', 'CourseController@getCourseByUser');
-		/* Route::get('/email/verify', function () {
-			return "must verified";
-		})->name('verification.notice');
-
-		Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-			$request->fulfill();
-		
-			return $request;
-		})->middleware(['signed'])->name('verification.verify');
-
-		Route::post('/email/verification-notification', function (Request $request) {
-			$request->user()->sendEmailVerificationNotification();
-		
-			return response()->json([
-				'status' => 'success',
-				'message'=> 'Link verifikasi email sudah dikirim!'
-			]);
-		})->middleware(['throttle:6,1'])->name('verification.send'); */
+		Route::get('/webinar/mywebinar/{userid}','WebinarController@mywebinar');
+		Route::post('/logout','LogoutController@logout');  
 	});
+	
+	Route::post('/reset-password', 'ResetUserPasswordController@resetPassword');
+	Route::post('/reset-password/{token}', 'ResetPasswordActionController@callResetPasswordAction');
     Route::post('/login','AuthController@login');
     Route::post('/register','AuthController@register');
 	
@@ -68,6 +43,7 @@ Route::prefix('v2')->group(function () {
 	Route::get('/membership/{courseid}','MembershipController@getMembership');
 	Route::post('/usermembership','UserMembershipController@store');
 	Route::get('/storage/{filename}','StorageController@index');
-
+	Route::get('/articles', 'ArticleController@index');
+	Route::get('/article/{id}', 'ArticleController@getArticleById');
 
 });
