@@ -13,4 +13,9 @@ class Subcourse extends Model{
     {
         return $this->hasMany('App\Minicourse');
     }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Schedule');
+    }
 }

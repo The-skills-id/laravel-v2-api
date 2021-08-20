@@ -53,6 +53,7 @@ Route::prefix('v2')->group(function () {
 	Route::get('/course/{title}','CourseController@getCourseByTitle');
 	Route::post('/subcourse/create','SubcourseController@createSubcourse');
 	Route::get('/subcourse/{course}','SubcourseController@getSubcourseByCourse');
+	Route::get('/subcourse/schedule/{id}', 'ScheduleController@getBySubcourseId');
 	Route::post('/minicourse','MinicourseController@store');
 	Route::get('/minicourse/{courseid}','MinicourseController@showByCourse');
 	Route::get('/minicourse/id/{id}','MinicourseController@showById');
